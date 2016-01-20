@@ -46,6 +46,11 @@ randPair s = ((l, i), s2)
     where (l, s1) = randLetter s
           (i, s2) = rand s1
 
+generalB :: (a -> b -> c) -> Gen a -> Gen b -> Gen c
+generalB f g1 g2 s = (f x y, s2)
+    where (x, s1) = g1 s
+          (y, s2) = g2 s1
+
 generalPair :: Gen a -> Gen b -> Gen (a, b)
 generalPair g1 g2 s = ((x, y), s2)
     where (x, s1) = g1 s
