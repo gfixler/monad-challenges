@@ -56,3 +56,6 @@ generalPair g1 g2 s = ((x, y), s2)
     where (x, s1) = g1 s
           (y, s2) = g2 s1
 
+generalPair2 :: Gen a -> Gen b -> Gen (a, b)
+generalPair2 = generalB (,)
+
