@@ -28,15 +28,16 @@ randString3 = [a,b,c]
           (b, s2) = randLetter s1
           (c, s3) = randLetter s2
 
+generalA :: (Integer -> Integer) -> Gen Integer -> Gen Integer
+generalA f g s = (f i, s')
+    where (i, s') = g s
+
 randEven :: Gen Integer
-randEven s = (i * 2, s')
-    where (i, s') = rand s
+randEven = generalA (*2) rand
 
 randOdd :: Gen Integer
-randOdd s = (i + 1, s')
-    where (i, s') = randEven s
+randOdd = generalA (+1) randEven
 
 randTen :: Gen Integer
-randTen s = (i * 10, s')
-    where (i, s') = rand s
+randTen = generalA (*10) rand
 
