@@ -14,3 +14,15 @@ fiveRands = [a,b,c,d,e]
           (d, s4) = rand s3
           (e, _)  = rand s4
 
+randLetter :: Seed -> (Char, Seed)
+randLetter s = (c, s')
+    where (i, s') = rand s
+          c = toLetter i
+
+randString3 :: String
+randString3 = [a,b,c]
+    where s0 = mkSeed 1
+          (a, s1) = randLetter s0
+          (b, s2) = randLetter s1
+          (c, s3) = randLetter s2
+
