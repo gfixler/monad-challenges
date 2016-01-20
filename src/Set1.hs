@@ -41,3 +41,13 @@ randOdd = generalA (+1) randEven
 randTen :: Gen Integer
 randTen = generalA (*10) rand
 
+randPair :: Gen (Char, Integer)
+randPair s = ((l, i), s2)
+    where (l, s1) = randLetter s
+          (i, s2) = rand s1
+
+generalPair :: Gen a -> Gen b -> Gen (a, b)
+generalPair g1 g2 s = ((x, y), s2)
+    where (x, s1) = g1 s
+          (y, s2) = g2 s1
+
