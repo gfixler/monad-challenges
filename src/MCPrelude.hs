@@ -96,7 +96,7 @@ module MCPrelude (
     ReadS,
     Read(readsPrec, readList),
     reads, readParen, read, lex,
-    undefined,
+    -- undefined,
 
     Seed,
     mkSeed,
