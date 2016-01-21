@@ -65,3 +65,6 @@ repRandom (g:gs) s = f [] gs (g s)
     where f xs [] (x, s) = (xs ++ [x], s)
           f xs (g:gs) (x, s) = f (xs ++ [x]) gs (g s)
 
+genTwo :: Gen a -> (a -> Gen b) -> Gen b
+genTwo g f s = let (x, s') = g s in f x s'
+
