@@ -37,3 +37,16 @@ minimumMay :: Ord a => [a] -> Maybe a
 minimumMay [] = Nothing
 minimumMay xs = Just (foldr1 min xs)
 
+queryGreek :: GreekData -> String -> Maybe Double
+queryGreek g s = case lookupMay s g of
+                     Nothing -> Nothing
+                     Just xs -> case tailMay xs of
+                                    Nothing -> Nothing
+                                    Just t  -> case headMay xs of
+                                                   Nothing -> Nothing
+                                                   Just h  -> case maximumMay t of
+                                                                  Nothing -> Nothing
+                                                                  Just m  -> case divMay (fromIntegral m) (fromIntegral h) of
+                                                                                 Nothing -> Nothing
+                                                                                 Just d  -> Just d
+
