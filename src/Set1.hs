@@ -59,3 +59,9 @@ generalPair g1 g2 s = ((x, y), s2)
 generalPair2 :: Gen a -> Gen b -> Gen (a, b)
 generalPair2 = generalB (,)
 
+repRandom :: [Gen a] -> Gen [a]
+repRandom [] s = ([], s)
+repRandom (g:gs) s = f [] gs (g s)
+    where f xs [] (x, s) = (xs ++ [x], s)
+          f xs (g:gs) (x, s) = f (xs ++ [x]) gs (g s)
+
