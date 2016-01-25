@@ -50,3 +50,11 @@ queryGreek g s = case lookupMay s g of
                                                                                  Nothing -> Nothing
                                                                                  Just d  -> Just d
 
+chain :: (a -> Maybe b) -> Maybe a -> Maybe b
+chain f (Just x) = f x
+chain _ Nothing = Nothing
+
+link :: Maybe a -> (a -> Maybe b) -> Maybe b
+link (Just x) f = f x
+link Nothing _ = Nothing
+
