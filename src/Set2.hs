@@ -58,3 +58,12 @@ link :: Maybe a -> (a -> Maybe b) -> Maybe b
 link (Just x) f = f x
 link Nothing _ = Nothing
 
+queryGreek2 :: GreekData -> String -> Maybe Double
+queryGreek2 g s = m `link` \a
+               -> h `link` \b
+               -> divMay (fromInteger a) (fromInteger b)
+    where x = lookupMay s g
+          h = chain headMay x
+          t = chain tailMay x
+          m = chain maximumMay t
+
