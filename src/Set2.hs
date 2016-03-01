@@ -72,3 +72,8 @@ addSalaries ss x y = lookupMay x ss `link`
               \x' -> lookupMay y ss `link`
               \y' -> Just (x' + y')
 
+yLink' :: Eq a => [(a, b)] -> (b -> b -> c) -> a -> a -> Maybe c
+yLink' xs f y z = lookupMay y xs `link`
+           \y' -> lookupMay z xs `link`
+           \z' -> Just (f y' z')
+
