@@ -83,3 +83,6 @@ yLink f x y = link x (\x' -> link y (\y' -> Just (f x' y')))
 addSalaries2 :: [(String, Integer)] -> String -> String -> Maybe Integer
 addSalaries2 ss x y = yLink (+) (lookupMay x ss) (lookupMay y ss)
 
+mkMaybe :: a -> Maybe a
+mkMaybe = Just
+
