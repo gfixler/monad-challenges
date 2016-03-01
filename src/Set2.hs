@@ -77,3 +77,6 @@ yLink' xs f y z = lookupMay y xs `link`
            \y' -> lookupMay z xs `link`
            \z' -> Just (f y' z')
 
+yLink :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+yLink f x y = link x (\x' -> link y (\y' -> Just (f x' y')))
+
