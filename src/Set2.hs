@@ -86,3 +86,6 @@ addSalaries2 ss x y = yLink (+) (lookupMay x ss) (lookupMay y ss)
 mkMaybe :: a -> Maybe a
 mkMaybe = Just
 
+tailProd :: Num a => [a] -> Maybe a
+tailProd xs = tailMay xs `link` \ys -> mkMaybe (product ys)
+
