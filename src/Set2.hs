@@ -70,15 +70,15 @@ queryGreek2 g s = m `link` \a
 addSalaries :: [(String, Integer)] -> String -> String -> Maybe Integer
 addSalaries ss x y = lookupMay x ss `link`
               \x' -> lookupMay y ss `link`
-              \y' -> Just (x' + y')
+              \y' -> mkMaybe (x' + y')
 
 yLink' :: Eq a => [(a, b)] -> (b -> b -> c) -> a -> a -> Maybe c
 yLink' xs f y z = lookupMay y xs `link`
            \y' -> lookupMay z xs `link`
-           \z' -> Just (f y' z')
+           \z' -> mkMaybe (f y' z')
 
 yLink :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
-yLink f x y = link x (\x' -> link y (\y' -> Just (f x' y')))
+yLink f x y = link x (\x' -> link y (\y' -> mkMaybe (f x' y')))
 
 addSalaries2 :: [(String, Integer)] -> String -> String -> Maybe Integer
 addSalaries2 ss x y = yLink (+) (lookupMay x ss) (lookupMay y ss)
