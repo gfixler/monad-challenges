@@ -89,3 +89,6 @@ mkMaybe = Just
 tailProd :: Num a => [a] -> Maybe a
 tailProd xs = tailMay xs `link` \ys -> mkMaybe (product ys)
 
+tailSum :: Num a => [a] -> Maybe a
+tailSum xs = tailMay xs `link` \ys -> mkMaybe (sum ys)
+
