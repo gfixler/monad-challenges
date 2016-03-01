@@ -67,3 +67,8 @@ queryGreek2 g s = m `link` \a
           t = chain tailMay x
           m = chain maximumMay t
 
+addSalaries :: [(String, Integer)] -> String -> String -> Maybe Integer
+addSalaries ss x y = lookupMay x ss `link`
+              \x' -> lookupMay y ss `link`
+              \y' -> Just (x' + y')
+
