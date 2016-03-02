@@ -107,3 +107,8 @@ tailMax :: Ord a => [a] -> Maybe (Maybe a)
 tailMax xs = case tailMay xs of Nothing -> Nothing
                                 (Just ys) -> Just (maximumMay ys)
 
+combine :: Maybe (Maybe a) -> Maybe a
+combine Nothing = Nothing
+combine (Just Nothing) = Nothing
+combine (Just (Just x)) = Just x
+
