@@ -98,3 +98,7 @@ transMaybe' f xs = tailMay xs `link` \ys -> mkMaybe (f ys)
 transMaybe :: (a -> b) -> Maybe a -> Maybe b
 transMaybe f xs = xs `link` \ys -> mkMaybe (f ys)
 
+tailMin :: Ord a => [a] -> Maybe (Maybe a)
+tailMin xs = case tailMay xs of Nothing -> Nothing
+                                (Just ys) -> Just (minimumMay ys)
+
