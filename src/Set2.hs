@@ -87,14 +87,14 @@ mkMaybe :: a -> Maybe a
 mkMaybe = Just
 
 tailProd :: Num a => [a] -> Maybe a
-tailProd = onTail product . tailMay
+tailProd = transMaybe product . tailMay
 
 tailSum :: Num a => [a] -> Maybe a
-tailSum = onTail sum . tailMay
+tailSum = transMaybe sum . tailMay
 
-onTail' :: ([a] -> a) -> [a] -> Maybe a
-onTail' f xs = tailMay xs `link` \ys -> mkMaybe (f ys)
+transMaybe' :: ([a] -> a) -> [a] -> Maybe a
+transMaybe' f xs = tailMay xs `link` \ys -> mkMaybe (f ys)
 
-onTail :: (a -> b) -> Maybe a -> Maybe b
-onTail f xs = xs `link` \ys -> mkMaybe (f ys)
+transMaybe :: (a -> b) -> Maybe a -> Maybe b
+transMaybe f xs = xs `link` \ys -> mkMaybe (f ys)
 
