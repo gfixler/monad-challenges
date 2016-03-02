@@ -4,6 +4,7 @@
 module Set1 where
 
 import MCPrelude
+import Data.List (minimum, maximum)
 
 data Maybe a = Nothing | Just a
 
@@ -101,4 +102,8 @@ transMaybe f xs = xs `link` \ys -> mkMaybe (f ys)
 tailMin :: Ord a => [a] -> Maybe (Maybe a)
 tailMin xs = case tailMay xs of Nothing -> Nothing
                                 (Just ys) -> Just (minimumMay ys)
+
+tailMax :: Ord a => [a] -> Maybe (Maybe a)
+tailMax xs = case tailMay xs of Nothing -> Nothing
+                                (Just ys) -> Just (maximumMay ys)
 
